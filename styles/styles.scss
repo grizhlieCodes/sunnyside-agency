@@ -1,0 +1,227 @@
+@use './mixins' as *;
+@import url("https://fonts.googleapis.com/css2?family=Barlow:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Fraunces:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
+
+// ### Primary
+
+// - Soft red: hsl(7, 99%, 70%)
+// - Yellow: hsl(51, 100%, 49%)
+// - Dark desaturated cyan (graphic design text): hsl(167, 40%, 24%)
+// - Dark blue (photography text): hsl(198, 62%, 26%)
+// - Dark moderate cyan (footer): hsl(168, 34%, 41%)
+
+// ### Neutral
+
+// - Very dark desaturated blue: hsl(212, 27%, 19%)
+// - Very dark grayish blue: hsl(213, 9%, 39%)
+// - Dark grayish blue: hsl(232, 10%, 55%)
+// - Grayish blue: hsl(210, 4%, 67%)
+// - White: hsl(0, 0%, 100%)
+
+:root {
+  --barlow: "Barlow", sans-serif;
+  --fraunces: "Fraunces", serif;
+}
+
+body {
+  width: 100%;
+  min-height: 100vh;
+  margin: auto;
+  max-width: 144rem;
+  position: relative;
+}
+
+section.hero {
+  width: 100%;
+  height: auto;
+  display: grid;
+  grid: min-content min-content / 1fr;
+  gap: 5.6rem;
+  position: relative;
+}
+
+.hero-bg-img-container {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: auto;
+  z-index: -1;
+
+  img {
+    width: 100%;
+    // height: 100%;
+    object-fit: cover;
+  }
+
+  &:nth-child(2) {
+    display: none;
+  }
+
+  @include mq(tablet) {
+    &:nth-child(1) {
+      display: none;
+    }
+    &:nth-child(2) {
+      display: block;
+    }
+  }
+}
+
+.hero .site-header {
+  padding: 3.2rem 2.4rem;
+  width: 100%;
+  height: auto;
+  @include flex(row nowrap, space-between, center);
+  position: relative;
+
+  .nav-button {
+    height: 1.8rem;
+    @include flex(column nowrap, space-between, center);
+    width: 2.4rem;
+    cursor: pointer;
+    margin: 0;
+    padding: 0;
+
+    @include mq(tablet) {
+      display: none;
+    }
+
+    div {
+      width: 100%;
+      height: 0.2rem;
+      background: white;
+      transition: all 250ms;
+      transform-origin: 1px 0.5px;
+    }
+
+    &.clicked {
+      opacity: 0.5;
+
+      & div:nth-child(1) {
+        transform: rotate(45deg);
+      }
+
+      & div:nth-child(2) {
+        transform: scale(0.4, 0.4);
+        opacity: 0;
+      }
+
+      & div:nth-child(3) {
+        transform: rotate(-45deg);
+      }
+    }
+  }
+
+  nav {
+    position: absolute;
+    top: calc(100% - 0.6rem + 2.4rem);
+    transform: translate(-50%, 0);
+    width: 90%;
+    @include flex(column nowrap, start, center);
+    padding: 3.9rem 0;
+    gap: 3.2rem;
+    font-size: 2rem;
+    line-height: 2.5rem;
+    letter-spacing: -0.014rem;
+    font-family: var(--barlow);
+    font-weight: 600;
+    color: hsl(232, 10%, 55%);
+    left: -100%;
+    opacity: 0;
+    transition: left 450ms, opacity 450ms;
+    background: white;
+
+    @include mq(tablet) {
+      position: static;
+      left: unset;
+      top: unset;
+      transform: unset;
+      width: min-content;
+      @include eflex(row nowrap, start, center);
+      gap: 4.7rem;
+      padding: 0;
+      opacity: 1;
+      background: transparent;
+      color: white;
+      font-size: 1.8rem;
+      letter-spacing: -0.013rem;
+    }
+
+    &::after {
+      content: "";
+      width: 2.4rem;
+      height: 2.4rem;
+      position: absolute;
+      background: rgb(255, 255, 255);
+      background: linear-gradient(
+        315deg,
+        rgba(255, 255, 255, 1) 50%,
+        rgba(0, 212, 255, 0) 50%
+      );
+      top: 0rem;
+      right: 0;
+      transition: top 450ms cubic-bezier(0.175, 0.885, 0.32, 1.275);
+      transition-delay: 450ms;
+
+      @include mq(tablet) {
+        display: none;
+      }
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+    }
+
+    button {
+      background: hsl(51, 100%, 49%);
+      font-family: var(--fraunces);
+      font-size: 1.5rem;
+      line-height: 2.5rem;
+      letter-spacing: -0.0011rem;
+      font-weight: bold;
+      padding: 1.6rem 3.2rem 1.5rem;
+      border-radius: 2.8rem;
+      text-transform: uppercase;
+      cursor: pointer;
+
+      @include mq(tablet) {
+        background: white;
+        color: #24303e;
+        transition: background 450ms, color 450ms;
+
+        &:hover {
+          background: rgba(255, 255, 255, 0.253);
+          color: white;
+        }
+      }
+    }
+  }
+
+  //Navigation transition effect when nav-button clicked   
+  nav.button-clicked {
+    left: 50%;
+    opacity: 1;
+
+    &::after {
+      top: -2.4rem;
+    }
+  }
+}
+
+.hero .hero-content {
+  height: min-content;
+  @include flex(column nowrap, start, center);
+  gap: 5.2rem;
+
+  h1 {
+    font-size: clamp(4rem, 2.4733rem + 4.0712vw, 5.6rem);
+    font-family: var(--fraunces);
+    font-weight: 900;
+    line-height: 100%;
+    text-transform: uppercase;
+    letter-spacing: clamp(0.625rem, 0.3865rem + 0.6361vw, 0.875rem);
+    color: white;
+    text-align: center;
+  }
+}

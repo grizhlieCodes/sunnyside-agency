@@ -1,0 +1,206 @@
+@import url("https://fonts.googleapis.com/css2?family=Barlow:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Fraunces:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
+:root {
+  --barlow: "Barlow", sans-serif;
+  --fraunces: "Fraunces", serif;
+}
+
+body {
+  width: 100%;
+  min-height: 100vh;
+  margin: auto;
+  max-width: 144rem;
+  position: relative;
+}
+
+section.hero {
+  width: 100%;
+  height: auto;
+  display: grid;
+  grid: min-content min-content/1fr;
+  gap: 5.6rem;
+  position: relative;
+}
+
+.hero-bg-img-container {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: auto;
+  z-index: -1;
+}
+.hero-bg-img-container img {
+  width: 100%;
+  object-fit: cover;
+}
+.hero-bg-img-container:nth-child(2) {
+  display: none;
+}
+@media screen and (min-width: 768px) {
+  .hero-bg-img-container:nth-child(1) {
+    display: none;
+  }
+  .hero-bg-img-container:nth-child(2) {
+    display: block;
+  }
+}
+
+.hero .site-header {
+  padding: 3.2rem 2.4rem;
+  width: 100%;
+  height: auto;
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: space-between;
+  align-items: center;
+  position: relative;
+}
+.hero .site-header .nav-button {
+  height: 1.8rem;
+  display: flex;
+  flex-flow: column nowrap;
+  justify-content: space-between;
+  align-items: center;
+  width: 2.4rem;
+  cursor: pointer;
+  margin: 0;
+  padding: 0;
+}
+@media screen and (min-width: 768px) {
+  .hero .site-header .nav-button {
+    display: none;
+  }
+}
+.hero .site-header .nav-button div {
+  width: 100%;
+  height: 0.2rem;
+  background: white;
+  transition: all 250ms;
+  transform-origin: 1px 0.5px;
+}
+.hero .site-header .nav-button.clicked {
+  opacity: 0.5;
+}
+.hero .site-header .nav-button.clicked div:nth-child(1) {
+  transform: rotate(45deg);
+}
+.hero .site-header .nav-button.clicked div:nth-child(2) {
+  transform: scale(0.4, 0.4);
+  opacity: 0;
+}
+.hero .site-header .nav-button.clicked div:nth-child(3) {
+  transform: rotate(-45deg);
+}
+.hero .site-header nav {
+  position: absolute;
+  top: calc(100% - 0.6rem + 2.4rem);
+  transform: translate(-50%, 0);
+  width: 90%;
+  display: flex;
+  flex-flow: column nowrap;
+  justify-content: start;
+  align-items: center;
+  padding: 3.9rem 0;
+  gap: 3.2rem;
+  font-size: 2rem;
+  line-height: 2.5rem;
+  letter-spacing: -0.014rem;
+  font-family: var(--barlow);
+  font-weight: 600;
+  color: #818498;
+  left: -100%;
+  opacity: 0;
+  transition: left 450ms, opacity 450ms;
+  background: white;
+}
+@media screen and (min-width: 768px) {
+  .hero .site-header nav {
+    position: static;
+    left: unset;
+    top: unset;
+    transform: unset;
+    width: min-content;
+    flex-flow: row nowrap;
+    justify-content: start;
+    align-items: center;
+    gap: 4.7rem;
+    padding: 0;
+    opacity: 1;
+    background: transparent;
+    color: white;
+    font-size: 1.8rem;
+    letter-spacing: -0.013rem;
+  }
+}
+.hero .site-header nav::after {
+  content: "";
+  width: 2.4rem;
+  height: 2.4rem;
+  position: absolute;
+  background: white;
+  background: linear-gradient(315deg, white 50%, rgba(0, 212, 255, 0) 50%);
+  top: 0rem;
+  right: 0;
+  transition: top 450ms cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  transition-delay: 450ms;
+}
+@media screen and (min-width: 768px) {
+  .hero .site-header nav::after {
+    display: none;
+  }
+}
+.hero .site-header nav * {
+  margin: 0;
+  padding: 0;
+}
+.hero .site-header nav button {
+  background: #fad400;
+  font-family: var(--fraunces);
+  font-size: 1.5rem;
+  line-height: 2.5rem;
+  letter-spacing: -0.0011rem;
+  font-weight: bold;
+  padding: 1.6rem 3.2rem 1.5rem;
+  border-radius: 2.8rem;
+  text-transform: uppercase;
+  cursor: pointer;
+}
+@media screen and (min-width: 768px) {
+  .hero .site-header nav button {
+    background: white;
+    color: #24303e;
+    transition: background 450ms, color 450ms;
+  }
+  .hero .site-header nav button:hover {
+    background: rgba(255, 255, 255, 0.253);
+    color: white;
+  }
+}
+.hero .site-header nav.button-clicked {
+  left: 50%;
+  opacity: 1;
+}
+.hero .site-header nav.button-clicked::after {
+  top: -2.4rem;
+}
+
+.hero .hero-content {
+  height: min-content;
+  display: flex;
+  flex-flow: column nowrap;
+  justify-content: start;
+  align-items: center;
+  gap: 5.2rem;
+}
+.hero .hero-content h1 {
+  font-size: clamp(4rem, 2.4733rem + 4.0712vw, 5.6rem);
+  font-family: var(--fraunces);
+  font-weight: 900;
+  line-height: 100%;
+  text-transform: uppercase;
+  letter-spacing: clamp(0.625rem, 0.3865rem + 0.6361vw, 0.875rem);
+  color: white;
+  text-align: center;
+}
+
+/*# sourceMappingURL=cssstyles.css.map */
