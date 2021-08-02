@@ -292,3 +292,161 @@ section.hero {
     text-align: center;
   }
 }
+
+main {
+  @include flex(column nowrap, start, center);
+}
+
+main .calls-to-action {
+  width: 100%;
+  height: auto;
+  // display: grid;
+  // grid-template-columns: 1fr;
+  // grid-auto-columns: min-content;
+}
+
+.calls-to-action .call-to-action {
+  width: 100%;
+  height: auto;
+  display: grid;
+  grid: min-content min-content / 1fr;
+  background: white;
+
+  @include mq(tablet) {
+    grid: min-content / 1fr 1fr;
+
+    &:nth-child(odd) {
+      .cta-image-container {
+        grid-column: 2/3;
+        grid-row: 1/2;
+      }
+      .text-container {
+        grid-column: 1/2;
+        grid-row: 1/2;
+      }
+    }
+  }
+}
+
+//! Investigate why flex struggles with the image's heights (below)
+
+// .calls-to-action .call-to-action {
+//   @include flex(column nowrap, start, center);
+//   height: min-content;
+
+//   @include mq(tablet) {
+//     @include eflex(row nowrap, start, center);
+
+//     * {
+//       flex: 1 0 50%;
+//     }
+
+//     &:nth-child(odd){
+//       flex-direction: row-reverse;
+//     }
+//   }
+// }
+
+.call-to-action {
+  .cta-image-container {
+    width: 100%;
+    height: 100%;
+
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    img:nth-child(2) {
+      display: none;
+    }
+
+    @include mq(tablet) {
+      img:nth-child(2) {
+        display: block;
+      }
+      img:nth-child(1) {
+        display: none;
+      }
+    }
+  }
+}
+
+.call-to-action {
+  .text-container {
+    @include flex(column nowrap, start, center);
+    // align-self: center;
+    text-align: center;
+    gap: 2.4rem;
+    padding: 6.4rem 2.4rem;
+
+    @include mq(tablet) {
+      justify-content: center;
+      align-items: flex-start;
+      justify-self: center;
+      text-align: left;
+      max-width: 47rem;
+    }
+
+    h2 {
+      font-family: var(--fraunces);
+      font-size: clamp(3.6rem, 3.3143rem + 0.7619vw, 4rem);
+      line-height: 100%;
+      letter-spacing: -0.023rem;
+      font-weight: 900;
+      color: #24303e;
+      margin-bottom: 0.8rem;
+    }
+
+    p {
+      font-family: var(--barlow);
+      font-size: 1.8rem;
+      line-height: 3rem;
+      letter-spacing: -0.013rem;
+      font-weight: 500;
+      color: #808397;
+    }
+
+    button {
+      font-family: var(--fraunces);
+      color: #24303e;
+      font-size: 1.5rem;
+      line-height: 2.5rem;
+      letter-spacing: 0.1rem;
+      font-weight: 900;
+      text-transform: uppercase;
+      position: relative;
+      z-index: 0;
+      cursor: pointer;
+
+      &:hover {
+        &::after {
+          opacity: 1;
+        }
+      }
+
+      &::after {
+        content: "";
+        position: absolute;
+        bottom: 0;
+        left: 50%;
+        transform: translate(-50%, -15%);
+        width: 114%;
+        height: 1rem;
+        opacity: 0.25;
+        z-index: -1;
+        border-radius: 2.8rem;
+        transition: opacity 250ms ease-in-out;
+      }
+    }
+  }
+
+  &.transform button::after {
+    background: #fad400;
+  }
+  &.stand-out button::after {
+    background: #FE7766;
+  }
+}
+
