@@ -77,6 +77,9 @@ section.hero .hero-content {
 .hero header.site-header .logo-container {
   height: 2.4rem;
 }
+.hero header.site-header .logo-container a, .hero header.site-header .logo-container a img {
+  height: 100%;
+}
 @media screen and (min-width: 768px) {
   .hero header.site-header .logo-container {
     height: 3.3rem;

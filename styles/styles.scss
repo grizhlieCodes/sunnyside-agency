@@ -113,6 +113,10 @@ section.hero {
   .logo-container {
     height: 2.4rem;
 
+    a, a img {
+      height: 100%;
+    }
+
     @include mq(tablet){
       height: 3.3rem;
     }
