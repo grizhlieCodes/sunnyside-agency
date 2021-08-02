@@ -44,11 +44,17 @@
 
 $mobile: 375;
 $tablet: 768;
+$sdesktop: 900;
 $desktop: 1200;
 
 @mixin mq($size) {
   @if ($size == tablet) {
     @media screen and (min-width: #{$tablet}px) {
+      @content;
+    }
+  }
+  @if ($size == sdesktop) {
+    @media screen and (min-width: #{$sdesktop}px) {
       @content;
     }
   }
