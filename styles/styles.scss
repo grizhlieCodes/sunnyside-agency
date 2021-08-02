@@ -653,3 +653,35 @@ section.testimonials article.testimonial {
     }
   }
 }
+
+section.portfolio-images {
+  width: 100%;
+  height: auto;
+  display: grid;
+  grid: 1fr 1fr / 1fr 1fr;
+
+  @include mq(sdesktop) {
+    max-height: 44.7rem;
+    grid: 1fr / repeat(4, 1fr);
+  }
+
+  > img.portfolio__image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  > img.portfolio__image.desktop {
+    display: none;
+  }
+
+  @include mq(sdesktop) {
+    > img.portfolio__image.desktop {
+      display: block;
+    }
+
+    > img.portfolio__image.mobile {
+      display: none;
+    }
+  }
+}
