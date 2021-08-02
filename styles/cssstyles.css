@@ -74,6 +74,14 @@ section.hero .hero-content {
   align-items: center;
   position: relative;
 }
+.hero header.site-header .logo-container {
+  height: 2.4rem;
+}
+@media screen and (min-width: 768px) {
+  .hero header.site-header .logo-container {
+    height: 3.3rem;
+  }
+}
 .hero header.site-header .logo-container a {
   transition: opacity 250ms;
 }
@@ -195,7 +203,7 @@ section.hero .hero-content {
   font-size: 1.5rem;
   line-height: 2.5rem;
   letter-spacing: -0.0011rem;
-  font-weight: bold;
+  font-weight: 700;
   padding: 1.6rem 3.2rem 1.5rem;
   border-radius: 2.8rem;
   text-transform: uppercase;
@@ -263,7 +271,7 @@ main .calls-to-action {
   height: auto;
   display: grid;
   grid: min-content min-content/1fr;
-  background: white;
+  background: #FFFCF8;
 }
 @media screen and (min-width: 768px) {
   .calls-to-action .call-to-action {
@@ -315,7 +323,7 @@ main .calls-to-action {
     align-items: flex-start;
     justify-self: center;
     text-align: left;
-    max-width: 47rem;
+    max-width: 44.5rem;
   }
 }
 .call-to-action .text-container h2 {

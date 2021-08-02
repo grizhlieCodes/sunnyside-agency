@@ -71,10 +71,6 @@ section.hero {
 }
 
 .hero-bg-img-container {
-  // position: absolute;
-  // left: 0;
-  // top: 0;
-  // height: 100%;
   width: 100%;
   // added max-height: 100% so our background remainds visible across
   // breakpoints. No need for it to be larger than 100% anyway as that is beyond
@@ -113,6 +109,14 @@ section.hero {
   height: auto;
   @include flex(row nowrap, space-between, center);
   position: relative;
+
+  .logo-container {
+    height: 2.4rem;
+
+    @include mq(tablet){
+      height: 3.3rem;
+    }
+  }
 
   .logo-container a {
     transition: opacity 250ms;
@@ -239,7 +243,7 @@ section.hero {
       font-size: 1.5rem;
       line-height: 2.5rem;
       letter-spacing: -0.0011rem;
-      font-weight: bold;
+      font-weight: 700;
       padding: 1.6rem 3.2rem 1.5rem;
       border-radius: 2.8rem;
       text-transform: uppercase;
@@ -313,7 +317,7 @@ main .calls-to-action {
   height: auto;
   display: grid;
   grid: min-content min-content / 1fr;
-  background: white;
+  background: #FFFCF8;
 
   @include mq(tablet) {
     grid: min-content / 1fr 1fr;
@@ -389,7 +393,7 @@ main .calls-to-action {
       align-items: flex-start;
       justify-self: center;
       text-align: left;
-      max-width: 47rem;
+      max-width: 44.5rem;
     }
 
     h2 {
