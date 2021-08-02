@@ -30,26 +30,62 @@ body {
   position: relative;
 }
 
+// Updated hero section
+//Images are now a part of the grid isntead of being positioned absolutely. We
+//needed the hero section to use the height of the images to correclty push down
+//content in a normal document flow. The egg image for the main section was
+//overlapping. Fix was quick. Update grid, add overlapping and add a fixed
+//height for header only.
+
 section.hero {
   width: 100%;
   height: auto;
   display: grid;
-  grid: min-content min-content / 1fr;
+  grid:
+    8.8rem
+    min-content / 1fr;
   gap: 5.6rem;
   position: relative;
+  transition: gap 250ms;
+  max-height: 100vh;
+
+  @include mq(tablet) {
+    grid:
+      12.4rem
+      min-content / 1fr;
+    gap: 7.1rem;
+}
+
+  header {
+    grid-row: 1/2;
+    grid-column: 1/2;
+  }
+.hero-bg-img-container {
+    grid-row: 1/3;
+    grid-column: 1/2;
+  }
+  .hero-content {
+    grid-row: 2/3;
+    grid-column: 1/2;
+  }
 }
 
 .hero-bg-img-container {
-  position: absolute;
-  left: 0;
-  top: 0;
+  // position: absolute;
+  // left: 0;
+  // top: 0;
+  // height: 100%;
   width: 100%;
+  // added max-height: 100% so our background remainds visible across
+  // breakpoints. No need for it to be larger than 100% anyway as that is beyond
+  // the scope of the hero section.
+  max-height: 100%;
   height: auto;
   z-index: -1;
 
   img {
     width: 100%;
-    // height: 100%;
+    height: 100%;
     object-fit: cover;
   }
 
@@ -67,12 +103,28 @@ section.hero {
   }
 }
 
-.hero .site-header {
+//! I think i should position the header fixed or absolutely to the
+//! body. But obviously change padding top of hero section and grid of
+//! it makes no sense than as it has a single child.
+
+.hero header.site-header {
   padding: 3.2rem 2.4rem;
   width: 100%;
   height: auto;
   @include flex(row nowrap, space-between, center);
   position: relative;
+
+  .logo-container a {
+    transition: opacity 250ms;
+  }
+
+  .logo-container a:hover {
+    opacity: 0.75;
+  }
+
+  @include mq(sdesktop) {
+    padding: 3.4rem 4rem;
+  }
 
   .nav-button {
     height: 1.8rem;
@@ -82,7 +134,7 @@ section.hero {
     margin: 0;
     padding: 0;
 
-    @include mq(tablet) {
+    @include mq(sdesktop) {
       display: none;
     }
 
@@ -131,7 +183,15 @@ section.hero {
     transition: left 450ms, opacity 450ms;
     background: white;
 
-    @include mq(tablet) {
+    a {
+      transition: opacity 250ms;
+    }
+
+    a:hover {
+      opacity: 0.75;
+    }
+
+    @include mq(sdesktop) {
       position: static;
       left: unset;
       top: unset;
@@ -163,7 +223,7 @@ section.hero {
       transition: top 450ms cubic-bezier(0.175, 0.885, 0.32, 1.275);
       transition-delay: 450ms;
 
-      @include mq(tablet) {
+      @include mq(sdesktop) {
         display: none;
       }
     }
@@ -185,7 +245,7 @@ section.hero {
       text-transform: uppercase;
       cursor: pointer;
 
-      @include mq(tablet) {
+      @include mq(sdesktop) {
         background: white;
         color: #24303e;
         transition: background 450ms, color 450ms;
@@ -213,8 +273,15 @@ section.hero {
   height: min-content;
   @include flex(column nowrap, start, center);
   gap: 5.2rem;
+  padding-bottom: 5rem;
+
+  @include mq(sdesktop) {
+    gap: 9.7rem;
+  }
 
   h1 {
+    // added 90% for better transition between breakpoints.
+    width: 90%;
     font-size: clamp(4rem, 2.4733rem + 4.0712vw, 5.6rem);
     font-family: var(--fraunces);
     font-weight: 900;
