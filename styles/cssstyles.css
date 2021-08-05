@@ -112,7 +112,7 @@ section.hero .hero-content {
     display: none;
   }
 }
-.hero header.site-header .nav-button div {
+.hero header.site-header .nav-button span {
   width: 100%;
   height: 0.2rem;
   background: white;
@@ -122,14 +122,14 @@ section.hero .hero-content {
 .hero header.site-header .nav-button.clicked {
   opacity: 0.5;
 }
-.hero header.site-header .nav-button.clicked div:nth-child(1) {
+.hero header.site-header .nav-button.clicked span:nth-child(1) {
   transform: rotate(45deg);
 }
-.hero header.site-header .nav-button.clicked div:nth-child(2) {
+.hero header.site-header .nav-button.clicked span:nth-child(2) {
   transform: scale(0.4, 0.4);
   opacity: 0;
 }
-.hero header.site-header .nav-button.clicked div:nth-child(3) {
+.hero header.site-header .nav-button.clicked span:nth-child(3) {
   transform: rotate(-45deg);
 }
 .hero header.site-header nav {
@@ -200,7 +200,7 @@ section.hero .hero-content {
   margin: 0;
   padding: 0;
 }
-.hero header.site-header nav button {
+.hero header.site-header nav button, .hero header.site-header nav .link-button {
   background: #fad400;
   font-family: var(--fraunces);
   font-size: 1.5rem;
@@ -213,12 +213,12 @@ section.hero .hero-content {
   cursor: pointer;
 }
 @media screen and (min-width: 900px) {
-  .hero header.site-header nav button {
+  .hero header.site-header nav button, .hero header.site-header nav .link-button {
     background: white;
     color: #24303e;
     transition: background 450ms, color 450ms;
   }
-  .hero header.site-header nav button:hover {
+  .hero header.site-header nav button:hover, .hero header.site-header nav .link-button:hover {
     background: rgba(255, 255, 255, 0.253);
     color: white;
   }
@@ -346,7 +346,7 @@ main .calls-to-action {
   font-weight: 500;
   color: #808397;
 }
-.call-to-action .text-container button {
+.call-to-action .text-container button, .call-to-action .text-container .cta-button {
   font-family: var(--fraunces);
   color: #24303e;
   font-size: 1.5rem;
@@ -358,10 +358,10 @@ main .calls-to-action {
   z-index: 0;
   cursor: pointer;
 }
-.call-to-action .text-container button:hover::after {
+.call-to-action .text-container button:hover::after, .call-to-action .text-container .cta-button:hover::after {
   opacity: 1;
 }
-.call-to-action .text-container button::after {
+.call-to-action .text-container button::after, .call-to-action .text-container .cta-button::after {
   content: "";
   position: absolute;
   bottom: 0;
@@ -374,10 +374,10 @@ main .calls-to-action {
   border-radius: 2.8rem;
   transition: opacity 250ms ease-in-out;
 }
-.call-to-action.transform button::after {
+.call-to-action.transform .cta-button::after {
   background: #fad400;
 }
-.call-to-action.stand-out button::after {
+.call-to-action.stand-out .cta-button::after {
   background: #FE7766;
 }
 
